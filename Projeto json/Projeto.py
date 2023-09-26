@@ -1,6 +1,5 @@
 import json
 
-# Função para carregar os dados do arquivo JSON ou criar um arquivo vazio
 def carregar_produtos():
     try:
         with open('produtos.json', 'r') as arquivo:
@@ -8,12 +7,10 @@ def carregar_produtos():
     except FileNotFoundError:
         return {}
 
-# Função para salvar os dados em um arquivo JSON
 def salvar_produtos(produtos):
     with open('produtos.json', 'w') as arquivo:
         json.dump(produtos, arquivo, indent=4)
 
-# Função para inserir um novo produto
 def inserir_produto(produtos):
     codigo = input("Digite o código do produto: ")
     if codigo in produtos:
@@ -21,7 +18,7 @@ def inserir_produto(produtos):
     else:
         nome = input("Digite o nome do produto: ")
         preco = float(input("Digite o preço do produto: "))
-        disponivel = True  # Por padrão, um novo produto é disponível
+        disponivel = True  
         produtos[codigo] = {
             "nome": nome,
             "quantidade": 0,
@@ -30,7 +27,6 @@ def inserir_produto(produtos):
         }
         print("Produto adicionado com sucesso.")
 
-# Função para consultar um produto por código
 def consultar_produto(produtos):
     codigo = input("Digite o código do produto: ")
     if codigo in produtos:
@@ -42,7 +38,6 @@ def consultar_produto(produtos):
     else:
         print("Produto não encontrado.")
 
-# Função para consultar todos os produtos
 def consultar_todos_produtos(produtos):
     if produtos:
         for codigo, produto in produtos.items():
@@ -55,7 +50,6 @@ def consultar_todos_produtos(produtos):
     else:
         print("Não há produtos cadastrados.")
 
-# Função para alterar o preço de um produto
 def alterar_preco(produtos):
     codigo = input("Digite o código do produto: ")
     if codigo in produtos:
@@ -65,14 +59,12 @@ def alterar_preco(produtos):
     else:
         print("Produto não encontrado.")
 
-# Função para aplicar acréscimo ou desconto em todos os produtos
 def aplicar_acrescimo_desconto(produtos):
     percentual = float(input("Digite o percentual de acréscimo (+) ou desconto (-): "))
     for produto in produtos.values():
         produto['preco'] *= (1 + percentual / 100)
     print("Acréscimo ou desconto aplicado com sucesso.")
 
-# Função para excluir um produto
 def excluir_produto(produtos):
     codigo = input("Digite o código do produto que deseja excluir: ")
     if codigo in produtos:
@@ -81,7 +73,6 @@ def excluir_produto(produtos):
     else:
         print("Produto não encontrado.")
 
-# Função principal
 def main():
     produtos = carregar_produtos()
 
