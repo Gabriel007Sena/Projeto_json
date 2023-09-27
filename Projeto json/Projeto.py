@@ -3,7 +3,7 @@ import json
 
 def carregar_dados():
     try:
-        with open('dados.json', 'r') as arquivo:
+        with open('bd.json', 'r') as arquivo:
             return json.load(arquivo)
     except FileNotFoundError:
         return []
